@@ -1,0 +1,23 @@
+<div class="lg:w-4/6 mx-auto px-32 my-8">
+    <h3 class="text-2xl font-semibold my-4">FAVORITES</h3>
+    <div class="flex gap-8">
+    <div *ngFor="let restaurant of favorites" class=" flex-none relative  p-4 rounded-lg shadow-md">
+            <img [src]="restaurant.img" alt="" class="w-60 lg:w-72 h-48 rounded-lg" (click)="navigateToOrders(restaurant)">
+
+            <p class="absolute top-40 mt-4 left-8 text-white font-extrabold text-xl">{{restaurant.banner}}</p>
+            <h3 class="font-semibold text-l my-2">{{restaurant.title}}</h3>
+            <div class="flex  mr-2 font-medium">
+                <img src="../../assets/greenstar.png" alt="" class="w-4 mx-1 my-1 h-4 rounded-full">
+
+                <p>
+                    {{restaurant.rating}}</p>
+                <p>· {{restaurant.time}}</p>
+            </div>
+
+            <p class="w-60 lg:w-72 text-gray-700 text-s">{{restaurant.food}}</p>
+            <p class="w-60 lg:w-72 text-gray-700 text-s">{{restaurant.address}}</p>
+            
+        
+    </div>
+</div>
+</div>

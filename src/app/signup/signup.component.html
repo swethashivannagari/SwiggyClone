@@ -1,0 +1,35 @@
+<div class="fixed inset-0 flex  justify-end bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 pr-16 rounded-lg shadow-lg w-1/3 max-w-full pl-12">
+        <button class="text-gray-500 text-4xl hover:text-gray-700" (click)="closeSignup()">×</button>
+
+        <div class="flex items-center justify-between ">
+            <div class="my-8 ">
+                <h2 class="text-3xl font-semibold">Sign up</h2>
+                <p class="text-sm">or <span class="text-sm text-custom-orange font-semibold hover:cursor-pointer" (click)="openLogIn($event)">login to your account</span>
+                </p>
+                <div class="text-2xl">__</div>
+            </div>
+
+            <img src="../../assets/loginpic.avif" alt="" class="w-24 h-24 ">
+        </div>
+
+        <div *ngIf="signedupFailure" class="text-red-500 text-sm">Signup failed. Try Again</div>
+        <div *ngIf="signedupSuccess" class="text-green-500 text-sm">Sign up Sucessful</div>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="phoneNumber" placeholder="Phone number" class="border text-gray-500 pl-8 py-5 w-full">
+        <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched" class="text-red-500 text-xs">*Invalid Phone Number</div>
+        <br>
+        <input type="text" formControlName="name" placeholder="Name" class="border text-gray-500 pl-8 py-5 w-full">
+        <div *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" class="text-red-500 text-xs"> *Name is required</div>
+        <br>
+        <input type="text" formControlName="email" placeholder="Email" class="border text-gray-500 pl-8 py-5 w-full">
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-red-500 text-xs"> *Invalid Email Address</div>
+        <br>
+        <a href="" class=" py-2 text-sm text-blue-500">Have a referral code?</a>
+        <button class="my-3 px-12 py-3 bg-custom-orange text-white font-semibold w-full">CONTINUE</button>
+    </form>
+        <p class="text-xs my-3 text-gray-700">By clicking on Login, I accept the
+        <span class="text-xs my-3 text-black">Terms & Conditions & Privacy Policy</span>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="lg:w-4/6 mx-auto px-32 my-12">
+    <h3 *ngIf="!restuarantDetails.title" class="text-xl font-bold">TajMahal</h3>
+    <h3 *ngIf="restuarantDetails.title" class="text-xl font-bold">{{restuarantDetails.title}}</h3>
+    
+
+    <div class="flex text-lg font-semibold gap-6">
+        <p class="mt-4 mx-4 border-b-4 border-orange-500 inline-block">Order Online</p>
+        <p class="mt-4 mx-4">Dineout</p>
+    </div>
+    <hr>
+    <div class="border border-gray-200 shadow-lg m-4 p-4 rounded-lg font-medium">
+        <div class="flex  mr-2 my-1 font-bold">
+            <img src="../../assets/greenstar.png" alt="" class="w-4 my-1 ml-1 h-4 rounded-full">
+            <p>
+                4.5 (63K+ ratings)
+            </p>
+            <p>·
+                ₹400 for two</p>
+        </div>
+        <div class="text-orange-600 my-1  underline"><a href="" >South Indian,North Indian</a></div>
+        <p class="my-1">Outlet <span class="text-gray-600 font-normal">Abids</span></p>
+        <p>45-50 mins</p>
+    </div>
+    <div>
+        <h3 class="text-xl font-bold mt-8 mb-4">Deals for you</h3>
+        <div class="flex overflow-x-auto gap-4 scrollbar-hide ">
+        <div class="flex-none border border-gray-200 w-2/3 flex justify-center items-center py-2 px-8 gap-4 rounded-lg">
+            <img src="../../assets/save2.avif" alt="" class="w-14 h-14 ">
+            <div>
+                <h4 class="font-bold">Extra ₹25 Off</h4>
+                <p class="text-gray-600 font-bold">APPLICABLE OVER & ABOVE COUPONs</p>
+            </div>
+        </div>
+        <div class="flex-none border border-gray-200 w-2/3 flex justify-center items-center py-2 px-8 gap-4 rounded-lg">
+            <img src="../../assets/axis.avif" alt="" class="w-14 h-14 ">
+            <div>
+                <h4 class="font-bold">10% Off Upto ₹100</h4>
+                <p class="text-gray-600 font-bold">USE AXISFEST</p>
+            </div>
+        </div>
+        <div class="flex-none border border-gray-200 w-2/3 flex justify-center items-center py-2 px-8 gap-4 rounded-lg">
+            <img src="../../assets/rbl.avif" alt="" class="w-14 h-14 ">
+            <div>
+                <h4 class="font-bold">FLAT 75% Off </h4>
+                <p class="text-gray-600 font-bold">USE RBLCC75</p>
+            </div>
+        </div>
+       
+       
+    </div>
+    </div>
+    <div class="my-4 font-semibold">
+        <h3 class="text-center text-gray-700">MENU</h3>
+        <div class=" my-2 py-2 bg-gray-100 text-gray-600  text-center rounded-lg">Search for dishes</div>
+        <div class="flex gap-4 my-4">
+            <div class="py-2 px-3 rounded-full border border-gray-400 text-gray-700 ">Bestseller</div>
+            <div class="py-2 px-3 rounded-full border border-gray-400 text-gray-700">Guiltfree</div>
+        </div>
+    </div>
+    <hr>
+
+    <!--warning-->
+    <div *ngIf="!singleRestaurant" class="mx-2 text-xl text-red-500 font-bold">**You Can Order Only From One Restaurant!</div>
+    <!--Top Picks-->
+    <div class="mb-4">
+        <div class="flex justify-between" >
+            <h2 class="font-extrabold text-2xl mx-4 my-3 ">Top Picks</h2>
+            <div class="flex gap-4 p-4">
+                <button  class="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300" id="prevBtn">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button class=" w-10 h-10 rounded-full bg-gray-200 p-2 hover:bg-gray-300" id="nextBtn">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        
+        <div class="flex overflow-x-auto  space-x-4 scrollbar-hide " id="container">
+           <!--menu Items-->
+            <div *ngFor="let item of menuItems" class="flex-none rounded-lg shadow-lg relative">
+                <img [src]="item.image" alt="" class="w-76 h-76">
+                <div class="absolute bottom-2 left-4 text-white text-lg font-semibold">{{item.price}}</div>
+                <button *ngIf="item.quantity===0" 
+                (click)="addToCart(item)"
+                class="absolute bottom-2 left-52 text-green-600 text-lg bg-white px-4 rounded-lg my-2 font-bold">ADD</button>
+
+                <div *ngIf="item.quantity>0" class="flex gap-4 absolute bottom-2 left-48 text-green-600 text-lg bg-white px-4 rounded-lg my-2 font-bold">
+                    
+                    <button (click)="removeFromCart(item)">-</button>
+                    <div>{{item.quantity}}</div>
+                    <button (click)="addToCart(item)">+</button>
+                </div>
+
+            </div>
+            
+        </div>
+        
+      
+    </div>
+</div>

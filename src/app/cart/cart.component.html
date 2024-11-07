@@ -1,0 +1,75 @@
+<div class="lg:w-4/6 mx-auto px-32 my-2">
+  <div *ngIf="!placeOrder" class="text-lg font-semibold text-orange-600 my-2">*Sign in to place order</div>
+    <h3 class="text-2xl font-bold">SECURE CHECKOUT</h3>
+    
+    <div>
+      <div *ngFor="let food of cart" class="grid grid-cols-4 place-items-center py-4">
+        <img [src]="food.item.image" alt="Food Image" class="w-28 h-28 rounded-full">
+  
+        <!-- Food Name and Price -->
+        <div>
+          <div class="font-semibold text-lg">{{ food.item.name }}</div>
+          <div>₹{{ food.item.price}}</div>
+        </div>
+  
+        <!-- Quantity Controls -->
+        <div class="flex items-center space-x-4">
+          <button (click)="removeFromCart(food.item)" class="px-2 py-1 bg-gray-300 rounded">-</button>
+          <span class="text-lg">{{ food.item.quantity }}</span>
+          <button (click)="addToCart(food.item)" class="px-2 py-1 bg-gray-300 rounded">+</button>
+        </div>
+        <!--Total price-->
+        <div>₹{{food.item.quantity*food.item.price}}</div>
+      </div>
+      <hr class="my-2">
+      
+      <div  class="mt-6 text-right text-lg font-semibold">
+        Subtotal: {{ calculateTotal() }}
+        <div>   
+        <button *ngIf="cart.length>0" (click)="checkOut()" class="px-4 py-2 text-white rounded-lg my-2 bg-orange-500">Checkout</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--CheckOut Modal-->
+  <div *ngIf="showOrderModal"  class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+    <div *ngIf="orderFailed">Failed to place Order Try Again!!</div>
+    <div *ngIf="orderFailed===false">Order Placed Suceessfully!! </div>
+    <div class="bg-white p-6 rounded-lg w-96">
+
+      <p>Enter Address</p>
+      <form #form="ngForm" (click)="onOrderSubmit()">
+        <div class="mb-4">
+          <div *ngIf="ctrl.invalid&&(ctrl.touched||form.submitted)" class="text-red-500 text-sm">
+            *Address is required.
+          </div>
+          <label for="address" class="block font-medium text-gray-700 py-2">Address</label>
+          <input type="text"
+          id="address"
+          [(ngModel)]="address"
+          name="address"
+          #ctrl="ngModel"
+          required
+          class="w-full mt-2 px-2 py-2 border border-gray-600 rounded-md focus:outline-none">
+        </div>
+        
+        <button 
+        type="submit" 
+        
+        class="w-full py-3 bg-orange-500 text-white rounded-md hover:bg-orange-600 focus:outline-none"
+      >
+        Place Order
+      </button>
+      </form>
+      <button 
+      (click)="closeModal()" 
+      class="mt-4 w-full py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50"
+    >
+      Cancel
+    </button>
+    </div>
+
+  </div>
+  

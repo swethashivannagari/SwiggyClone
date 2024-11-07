@@ -1,0 +1,54 @@
+<div class="flex items-center justify-between px-4 lg:px-28 py-4 mx-auto text-gray-700 font-medium bg-white shadow-md">
+    <div class="flex items-center space-x-2">
+       <a routerLink=""> <img src="../../assets/swiggyicon.jpeg" alt="icon" class="w-12 h-12"></a>
+        <u><span class="text-s font-bold text--500 p-4">Other</span></u>
+        <i class="fa fa-chevron-down text-orange-500 ml-1"></i>
+        
+
+    </div>
+    <div class="hidden lg:flex items-center justify-between space-x-8">
+        <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa fa-briefcase mx-1"></i>
+            <a href="#" class="hover:text-orange-500">Swiggy Corporate</a>
+        </div>
+
+        <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa fa-search mx-1"></i>
+            <input
+            type="text"
+            [(ngModel)]="searchText"
+            (keyup)="onSearch()"
+            placeholder="Search food or restaurant"
+            class="border p-1 rounded text-sm"
+          />
+          </div>
+          <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa fa-percent  mx-1"></i>
+            <a href="#" class="hover:underline">Offers</a>
+            <span class="text-xs text-orange-500 font-semibold">NEW</span>
+          </div>
+          <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa-solid fa-heart "></i>
+            <a routerLink="favorite" href="#" class="hover:underline">Favorites</a>
+          </div>
+          <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa fa-user mx-1"></i>
+
+            <!--username on login-->
+            <div *ngIf="isLoggedIn" (click)="toggleLogout()">{{username}}</div>
+            <!--logout button-->
+            <div *ngIf="showLogout" class="absolute bg-white shadow-md rounded p-4 mt-20 top-15"><button (click)="logout()" class="text-black hover:poiner-cursor">LogOut</button></div>
+            <a  *ngIf="!isLoggedIn" href="#" class="hover:underline" (click)="openLogin()">Sign In</a>
+          </div>
+          <div class="flex items-center space-x-1 hover:text-orange-600">
+            <i class="fa fa-shopping-bag "></i>
+            <span [ngClass]="cartQuantity===0?'text-black': 'text-orange-500 font-semibold mb-4'">{{cartQuantity}}</span>
+            <a routerLink="cart" href="#" class="px-2 hover:underline">Cart</a>
+          </div>
+    </div>
+
+</div>
+<!--login page-->
+<app-login *ngIf="showLogin" (close)="onCloseLogin()" (openSignup)="openSignup()"></app-login>
+<!--signup page-->
+<app-signup *ngIf="showSignup" (close)="onCloseSignup()" (openLogin)="openLogin()" ></app-signup>
