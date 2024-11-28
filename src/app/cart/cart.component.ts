@@ -83,7 +83,7 @@ onOrderSubmit(){
       this.orderFailed=false;
       localStorage.removeItem('cartItems');
       localStorage.removeItem('currentRestaurant');
-      //window.location.reload();
+      window.location.reload();
     },
     (error)=>{
       console.error('error placing order');
