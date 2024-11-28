@@ -19,21 +19,17 @@
           "options": {
             "outputPath": "dist/swiggy-clone",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-
-            
-
             "assets": [
               {
                 "glob": "_redirects",
                 "input": "src/assets",
                 "output": "/assets"
-               
               }
             ],
             "styles": [
@@ -92,7 +88,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-              "glob": "_redirects",
+                "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
               }
